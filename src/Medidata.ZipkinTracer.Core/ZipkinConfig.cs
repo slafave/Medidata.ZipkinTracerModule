@@ -27,7 +27,7 @@ namespace Medidata.ZipkinTracer.Core
 
             if (Domain == null)
             {
-                Domain = request => new Uri(request.Uri.Host);
+                Domain = request => new Uri(request.Uri.Authority);
             }
 
             if (ExcludedPathList == null)

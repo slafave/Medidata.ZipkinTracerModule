@@ -22,7 +22,7 @@ namespace Medidata.ZipkinTracer.Core
             this.spanCollector = spanCollector;
             this.zipkinEndpoint = zipkinEndpoint;
             this.zipkinNotToBeDisplayedDomainList = zipkinNotToBeDisplayedDomainList;
-            var domainHost = domain.Host;
+            var domainHost = domain.Authority;
             this.serviceName = CleanServiceName(domainHost);
         }
 
@@ -71,7 +71,7 @@ namespace Medidata.ZipkinTracer.Core
         {
             var newSpan = CreateNewSpan(spanName, traceId, parentSpanId, spanId);
             var serviceEndpoint = zipkinEndpoint.GetLocalEndpoint(serviceName);
-            var clientServiceName = CleanServiceName(remoteUri.Host);
+            var clientServiceName = CleanServiceName(remoteUri.Authority);
 
             var annotation = new Annotation
             {
